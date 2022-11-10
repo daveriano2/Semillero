@@ -61,4 +61,18 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function turnos(){
+        return $this->hasMany(Turno::class, 'id_Users'. 'name');
+
+    }
+    public function adminlte_image(){
+        return 'vendor/adminlte/dist/img/AdminLTELogo.png';
+
+    }
+    public function ingresos()
+    {
+        return $this->hasMany('App\Models\Ingreso', 'id_User', 'id');
+    }
+    
 }
+

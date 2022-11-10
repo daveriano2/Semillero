@@ -1,13 +1,16 @@
 
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Usuarios')
 
 @section('content_header')
     <h1>Empleados</h1>
 @stop
 
 @section('content')
+    <div class="float-right">
+            <a class="btn btn-primary" href="{{ route('dash') }}"> Volver</a>
+    </div>
 
 <a class="btn btn-primary" href="{{route('usuarios.create')}}" role="button">Crear empleado</a>
 <table class="table table-bordered border-primary">

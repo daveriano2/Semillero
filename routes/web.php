@@ -11,6 +11,7 @@ use App\Http\Controllers\SedeController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\IngresoController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -23,6 +24,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::resource('sedes',SedeController::class);
     Route::resource('turnos',TurnoController::class);
     Route::resource('horarios',HorarioController::class);
+    Route::resource('ingresos', IngresoController::class);
 
 });
 

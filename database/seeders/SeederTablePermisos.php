@@ -17,10 +17,18 @@ class SeederTablePermisos extends Seeder
     public function run()
     {
         $permisos =[
-            'ver-rol',
-            'crear-rol',
-            'editar-rol',
-            'borrar-rol',
+
+            //permisos para roles
+            'Ver-rol',
+            'Crear-rol',
+            'Editar-rol',
+            'Borrar-rol',
+            //permisos para roles
+            'Ver-novedad',
+            'Crear-novedad',
+            'Editar-novedad',
+            'Borrar-novedad',
+ 
         ];
         foreach($permisos as $permiso){
             Permission::create(['name'=>$permiso]);

@@ -13,11 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ciudads', function (Blueprint $table) {
+        Schema::create('vacaciones', function (Blueprint $table) {
             $table->id();
-            $table->string('Nombre', 100);
+            $table->foreignId('id_User')
+            ->nullable()
+            ->constrained('users')
+            ->cascadeOnUpdate()
+            ->nullOnDelete();
+            $table->date('Fecha_Inicio');
+            $table->date('Fecha_Final');
+
             $table->timestamps();
-            
+
         });
     }
 
@@ -28,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ciudads');
+        Schema::dropIfExists('vacaciones');
     }
 };

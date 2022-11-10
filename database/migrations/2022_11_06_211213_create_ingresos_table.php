@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('turnos', function (Blueprint $table) {
+        Schema::create('ingresos', function (Blueprint $table) {
             $table->id();
-            
             $table->foreignId('id_User')
             ->nullable()
             ->constrained('users')
@@ -36,16 +35,6 @@ return new class extends Migration
             ->cascadeOnUpdate()
             ->nullOnDelete();
 
-            
-            $table->foreignId('id_Horario')
-            ->nullable()
-            ->constrained('horarios')
-            ->cascadeOnUpdate()
-            ->nullOnDelete();
-
-            $table->date('Fecha_Inicio');
-            $table->date('Fecha_Final');
-            $table->bigInteger('Celular');
             $table->timestamps();
         });
     }
@@ -57,6 +46,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('turnos');
+        Schema::dropIfExists('ingresos');
     }
 };

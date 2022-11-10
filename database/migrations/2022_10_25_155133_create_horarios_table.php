@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
-            $table->time('Hora Inicio', $precision = 0);
-            $table->time('Hora Fin', $precision = 0);
+            $table->time('Hora_Inicio', $precision = 0);
+            $table->time('Hora_Fin', $precision = 0);
+            $table->timestamps();
         });
     }
 

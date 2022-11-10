@@ -1,26 +1,28 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear Roles')
+@section('title', 'Editar Roles')
 
 @section('content_header')
-    <h1>Crear Roles</h1>
+    <h1>Editar Roles</h1>
 @stop
 
 @section('content')
-
+        <div class="float-right">
+            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Volver</a>
+        </div>
 @if($errors->any())
     <div class="alert alert-dark alert-dismissible fade show" role="alert">
      <strong>¡Revise Los Campos!</strong>
-        @foreach ($errors-all() as $error)
+        @foreach ($errors->all() as $error)
             <span class ="badge badge-danger">{{$error}}</span>
         @endforeach
         <button type="button" class="close" data-dismiss="alerta" aria-label="close">
-          <span aria-hidden="true">$timmes;</span>  
+          <span aria-hidden="true">&times;</span>  
         </button>  
     </div>  
     @endif
 
-    {!! Form::model($role, ['method'=>'PATCH', 'route'=>['roles.update', $role->id]]) !!}
+    {!! Form::model($role, ['method'=>'PUT', 'route'=>['roles.update', $role->id]]) !!}
      
         
     <div class="row">
@@ -37,7 +39,7 @@
             <br/>
             @foreach($permission as $value)
 
-            <label>{{ Form::checkbox('$permission[]', $value->id, in_array ($value->id, $rolePermissions)?true : false, array('class' => 'name'))}} 
+            <label>{{ Form::checkbox('permission[]', $value->id, in_array ($value->id, $rolePermissions)?true : false, array('class' => 'name'))}} 
                 {{$value->name}}</label>
                 <br/>
             @endforeach
@@ -49,7 +51,7 @@
                 <button type=submit class="btn btn-primary">Guardar</button>
             </div> 
         </div> 
-        {!! Form::close() !!}
+       
     </div>   
            
     {!! Form::close() !!}

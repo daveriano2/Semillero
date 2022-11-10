@@ -1,12 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Roles')
 
 @section('content_header')
     <h1>KONECTA</h1>
 @stop
 
 @section('content')
+    <div class="float-right">
+            <a class="btn btn-primary" href="{{ route('dash') }}"> Volver</a>
+    </div>
 @can('crear-rol')
         <a class = "btn btn-warning" href="{{route('roles.create')}}">Crear Rol</a>
     @endcan

@@ -16,7 +16,7 @@ return [
 
     'title' => 'Konecta',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => '| Konecta',
 
     /*
     |--------------------------------------------------------------------------
@@ -130,9 +130,9 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => false,
+    'usermenu_image' => true,
     'usermenu_desc' => false,
     'usermenu_profile_url' => false,
 
@@ -150,8 +150,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -186,7 +186,7 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => '',
+    'classes_brand' => 'bg-primary',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
@@ -302,20 +302,55 @@ return [
 
         // Sidebar items:
         [
-            'type' => 'sidebar-menu-search',
-            'text' => 'Buscar',
+            'text' => 'Registro de ingreso',
+            'url'  => 'ingresos',
+            'can'  => 'Ver-novedad',
+            'icon'        => 'far fa-solid fa-user',
         ],
         [
             'text' => 'Empleados',
             'url'  => 'usuarios',
-            'can'  => 'manage-blog',
+            'can'  => 'Administrador',
+            'icon'        => 'far fa-solid fa-user',
+        ],
+        [
+            'text' => 'Roles',
+            'url'  => 'roles',
+            'can'  => 'Administrador',
+            'icon'        => 'far fa-solid fa-user',
         ],
         [
             'text'        => 'Horarios',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'icon'        => 'fas fa-fw fa-calendar',
+            
+            'submenu' => [
+                [
+                    'text' => 'Crear sede',
+                    'url'  => 'sedes',
+                    'can'  => 'Administrador',
+                    'icon'  => 'fas fa-fw fa-building',
+                ],
+                [
+                    'text'    => 'crear ciudad',
+                    'url'     => 'ciudads',
+                    'can'  => 'Administrador',
+                    'icon'  => 'fas fa-fw fa-city',
+                    
+                ],
+                [
+                    'text' => 'crear horario',
+                    'url'  => 'horarios',
+                    'can'  => 'Administrador',
+                    'icon'  => 'fas fa-fw fa-calendar-week',
+                ],
+                [
+                    'text' => 'turnos',
+                    'url'  => 'turnos',
+                    'icon'  => 'fas fa-fw fa-clock',
+                    
+                ],
+            ]
         ],
         
         [
@@ -334,16 +369,16 @@ return [
             'submenu' => [
                 [
                     'text' => 'Registro Vacaciones',
-                    'url'  => '#',
+                    'url'  => 'vacaciones',
                 ],
                 [
                     'text'    => 'Registro Horas extras',
-                    'url'     => '#',
+                    'url'     => 'extras',
                     
                 ],
                 [
                     'text' => 'Cambio de turnos',
-                    'url'  => '#',
+                    'url'  => 'cambio',
                 ],
             ],
         ],

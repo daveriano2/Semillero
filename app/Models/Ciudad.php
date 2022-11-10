@@ -8,5 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Ciudad extends Model
 {
     use HasFactory;
-    protected $fillable =['Nombre Ciudad'];
+    protected $fillable =['Nombre'];
+
+
+
+    public function turnos()
+    {
+        return $this->hasMany('App\Models\Turno', 'id_Ciudad', 'id');
+    }
+    public function ingresos()
+    {
+        return $this->hasMany('App\Models\Ingreso', 'id_Ciudad', 'id');
+    }
+
+   
 }
+
+

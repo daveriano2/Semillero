@@ -1,85 +1,92 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Arr;
 use App\Models\turno;
 use Illuminate\Http\Request;
+use App\Models\Ciudad;
+use App\Models\Sede;
+use App\Models\User;
+use App\Models\Horario;
+
 
 class TurnoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct()
+    {
+        $this->middleware('permission:Ver-rol|Crear-rol|Editar-rol|Borrar-rol',['only'=>['index']]);
+        $this->middleware('permission: Crear-rol ',['only'=>['create', 'store']]);
+        $this->middleware('permission: Editar-rol ',['only'=>['edit', 'update']]);
+        $this->middleware('permission: Borrar-rol ',['only'=>['destroy']]);
+    }
     public function index()
     {
-        //
+        $turnos = Turno::paginate(5);
+        return view('turnos.index',compact('turnos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        //
+        $turno = new Turno();
+        $ciudads= Ciudad::pluck('Nombre' , 'id');
+        $sedes= Sede::pluck('Nombre' , 'id');
+        $users= User::pluck('name' , 'id');    
+        $horarios= Horario::pluck('Hora_Inicio' , 'id');    
+        return view('turnos.crear',compact('turno','users','ciudads','sedes','horarios'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
-    }
+        request()->validate(Turno::$rules);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\turno  $turno
-     * @return \Illuminate\Http\Response
-     */
+        $turno = Turno::create($request->all());
+
+        return redirect()->route('turnos.index')
+            ->with('success', 'Turno created successfully.');
+        
+      }
+
+  
     public function show(turno $turno)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\turno  $turno
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(turno $turno)
     {
-        //
+        $ciudads=Ciudad::pluck('Nombre' , 'id');
+        $sedes=Sede::pluck('Nombre' , 'id');
+        $users=User::pluck('name' , 'id');    
+        $horarios=Horario::pluck('Hora_Inicio' , 'id');    
+        return view('turnos.editar',compact('turno','users','ciudads','sedes','horarios'));
+       
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\turno  $turno
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, turno $turno)
     {
-        //
+
+        
+        request()->validate(turno::$rules);
+
+        $turno->update($request->all());
+
+        return redirect()->route('turnos.index')
+            ->with('success', 'Turno updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\turno  $turno
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(turno $turno)
+    
+    public function destroy($id)
     {
-        //
+        $turno = Turno::find($id)->delete();
+
+        return redirect()->route('turnos.index')
+            ->with('success', 'Turno deleted successfully');
     }
 }

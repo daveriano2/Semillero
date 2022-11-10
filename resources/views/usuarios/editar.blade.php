@@ -7,6 +7,9 @@
 @stop
 
 @section('content')
+    <div class="float-right">
+            <a class="btn btn-primary" href="{{ route('usuarios.index') }}"> Volver</a>
+    </div>
 
 @if($errors->any())
     <div class="alert alert-dark alert-dismissible fade show" role="alert">
@@ -15,7 +18,7 @@
             <span class ="badge badge-danger">{{$error}}</span>
         @endforeach
         <button type="button" class="close" data-dismiss="alerta" aria-label="close">
-          <span aria-hidden="true">$timmes;</span>  
+          <span aria-hidden="true">&times;</span>  
         </button>  
     </div>  
     @endif
@@ -38,7 +41,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <label for="name">Roles</label>
-            {!! Form::select('roles[]', $roles,[], array ('class'=> 'form-control')) !!}
+            {!! Form::select('roles[]', $roles,$userRole, array ('class'=> 'form-control')) !!}
             </div>
         </div>
 

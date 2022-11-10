@@ -8,15 +8,18 @@
 @stop
 
 @section('content')
+    <div class="float-right">
+            <a class="btn btn-primary" href="{{ route('usuarios.index') }}"> Volver</a>
+    </div>
 
 @if($errors->any())
     <div class="alert alert-dark alert-dismissible fade show" role="alert">
      <strong>¡Revise Los Campos!</strong>
-        @foreach ($errors-all() as $error)
+        @foreach ($errors->all() as $error)
             <span class ="badge badge-danger">{{$error}}</span>
         @endforeach
         <button type="button" class="close" data-dismiss="alerta" aria-label="close">
-          <span aria-hidden="true">$timmes;</span>  
+          <span aria-hidden="true">&times;</span>  
         </button>  
     </div>  
     @endif

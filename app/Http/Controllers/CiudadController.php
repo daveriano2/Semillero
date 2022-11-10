@@ -7,46 +7,43 @@ use Illuminate\Http\Request;
 
 class CiudadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct()
+    {
+        $this->middleware('permission:Ver-rol|Crear-rol|Editar-rol|Borrar-rol',['only'=>['index']]);
+        $this->middleware('permission: Crear-rol ',['only'=>['create', 'store']]);
+        $this->middleware('permission: Editar-rol ',['only'=>['edit', 'update']]);
+        $this->middleware('permission: Borrar-rol ',['only'=>['destroy']]);
+    }
+    
     public function index()
     {
-        //
+        $ciudads = Ciudad::paginate(5);
+        return view('ciudads.index',compact('ciudads'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
-        //
+        return view('ciudads.crear');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+        request()->validate([
+
+            'Nombre' =>'required',
+
+        ]);
+
+        Ciudad::create($request->all());
+        return redirect()-> route('ciudads.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ciudad  $ciudad
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(Ciudad $ciudad)
     {
-        //
+        
     }
 
     /**
@@ -57,29 +54,23 @@ class CiudadController extends Controller
      */
     public function edit(Ciudad $ciudad)
     {
-        //
+        return view('ciudads.editar', compact('ciudad'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ciudad  $ciudad
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, Ciudad $ciudad)
     {
-        //
+        request()->validate([
+            'Nombre' =>'required',
+        ]);
+        Ciudad::create($request->all());
+        return redirect()-> route('ciudads.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ciudad  $ciudad
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Ciudad $ciudad)
     {
-        //
+        $ciudad->delete();
+        return redirect()->route('ciudads.index');
     }
 }
