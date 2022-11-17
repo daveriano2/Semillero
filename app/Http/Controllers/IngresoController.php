@@ -51,7 +51,7 @@ class IngresoController extends Controller
         $ingreso = Ingreso::create($request->all());
 
         return redirect()->route('ingresos.index')
-            ->with('success', 'Ingreso created successfully.');
+            ->with('success', 'Ingreso Registrado.');
     }
 
     

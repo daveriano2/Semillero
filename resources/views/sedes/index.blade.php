@@ -45,7 +45,7 @@
     </thead>
     </table>
 
-
+    {!! $sedes->links() !!}
 
 @stop
 

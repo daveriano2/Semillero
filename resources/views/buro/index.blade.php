@@ -59,7 +59,7 @@
     </thead>
     </table>
 
-    {!! $turnos->links() !!}
+
 
 @stop
 

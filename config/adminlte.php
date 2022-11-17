@@ -133,7 +133,7 @@ return [
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => true,
-    'usermenu_desc' => false,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => false,
 
     /*
@@ -323,6 +323,7 @@ return [
             'text'        => 'Horarios',
             'url'         => 'admin/pages',
             'icon'        => 'fas fa-fw fa-calendar',
+            'can'  => 'Administrador',
             
             'submenu' => [
                 [
@@ -344,18 +345,79 @@ return [
                     'can'  => 'Administrador',
                     'icon'  => 'fas fa-fw fa-calendar-week',
                 ],
+
                 [
-                    'text' => 'turnos',
+                    'text' => 'Crea Turnos',
                     'url'  => 'turnos',
+                    'can'  => 'Administrador',
                     'icon'  => 'fas fa-fw fa-clock',
-                    
+
                 ],
+                
             ]
         ],
+
+        [
+            'text' => 'turnos',
+            
+            'icon'  => 'fas fa-fw fa-clock',
+            'submenu' => [
+                [
+                    'text' => 'Bogota',
+                    'url'  => 'bogota',
+                    'submenu' => [
+                        [
+                            'text' => 'Buro 24',
+                            'icon_color' => 'red',
+                            'url'  => 'buro',
+                            
+                        ],
+                        [
+                            'text'    => 'Niza',
+                            'url'     => 'niza',
+                            
+                        ],
+                        [
+                            'text' => 'Puerta Del Sol',
+                            'url'  => 'puerta',
+                        ],
+                    ],
+                    
+                ],
+                [
+                    'text'    => 'Medellin',
+                    'url'     => 'medellin',
+                    'submenu' => [
+                        [
+                            'text' => 'Buro Itagui',
+                            'icon_color' => 'red',
+                            'url'  => 'itagui',
+                            
+                        ],
+                        [
+                            'text'    => 'Ceoh',
+                            'url'     => 'ceoh',
+                            
+                        ],
+                        [
+                            'text' => 'Puerto seco',
+                            'url'  => 'puerto',
+                        ],
+                    ],
+                    
+                ],
+                [
+                    'text' => 'Monteria',
+                    'url'  => 'monteria',
+                ],
+            ],
+            
+        ],
+
         
         [
             'text' => 'Perfil',
-            'url'  => 'profile/Update Password',
+            'url'  => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
@@ -369,6 +431,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Registro Vacaciones',
+                    
                     'url'  => 'vacaciones',
                 ],
                 [
@@ -382,7 +445,7 @@ return [
                 ],
             ],
         ],
-        /* ['header' => 'labels'],
+       /* ['header' => 'labels'],
         [
             'text'       => 'important',
             'icon_color' => 'red',

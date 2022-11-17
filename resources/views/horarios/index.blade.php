@@ -45,4 +45,5 @@
             
         </thead>
         </table>
+        {!! $horarios->links() !!}
         @stop

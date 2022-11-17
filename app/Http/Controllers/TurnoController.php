@@ -36,7 +36,7 @@ class TurnoController extends Controller
         $sedes= Sede::pluck('Nombre' , 'id');
         $users= User::pluck('name' , 'id');    
         $horarios= Horario::pluck('Hora_Inicio' , 'id');    
-        return view('turnos.crear',compact('turno','users','ciudads','sedes','horarios'));
+        return view('turnos.crear',compact('turno','users','ciudads','sedes','horarios'))->with('success', 'Ingreso Registrado.');
     }
 
     

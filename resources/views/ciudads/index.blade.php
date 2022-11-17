@@ -42,7 +42,7 @@
     </thead>
     </table>
 
-
+    {!! $ciudads->links() !!}
 
 @stop
 

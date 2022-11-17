@@ -45,7 +45,7 @@
     </thead>
     </table>
 
-
+    {!! $roles->links() !!}
 
 @stop
 

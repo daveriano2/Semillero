@@ -66,7 +66,8 @@ class User extends Authenticatable
 
     }
     public function adminlte_image(){
-        return 'vendor/adminlte/dist/img/AdminLTELogo.png';
+
+        return 'https://picsum.photos/300/300';
 
     }
     public function ingresos()
@@ -74,5 +75,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Ingreso', 'id_User', 'id');
     }
     
+    
+    public function adminlte_desc(){
+
+        return $this->role_id;
+
+    }
 }
 

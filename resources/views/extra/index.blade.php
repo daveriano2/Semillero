@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('template_title')
-    Ingreso
+    Extra
 @endsection
 
 @section('content')
@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Control De Ingreso ') }}
+                                {{ __('Extra') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('ingresos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Registro de Ingreso ') }}
+                                <a href="{{ route('extras.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Create New') }}
                                 </a>
                               </div>
                         </div>
@@ -28,7 +28,7 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-                    @can('Administrador')
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
@@ -36,29 +36,28 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Tecnico</th>
-										<th>Ciudad</th>
-										<th>Sede</th>
-                                        <th>Hora de Registro</th>
+										<th>Fecha Actividad</th>
+										<th>Hora Inicio</th>
+										<th>Hora Fin</th>
+										<th>Estado</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                
-                                    @foreach ($ingresos as $ingreso)
+                                    @foreach ($extras as $extra)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $ingreso->Users->name }}</td>
-											<td>{{ $ingreso->Ciudads->Nombre }}</td>
-											<td>{{ $ingreso->Sedes->Nombre }}</td>
-                                            <td>{{ $ingreso->created_at }}</td>
+											<td>{{ $extra->Fecha_Actividad }}</td>
+											<td>{{ $extra->Hora_Inicio }}</td>
+											<td>{{ $extra->Hora_Fin }}</td>
+											<td>{{ $extra->Estado }}</td>
 
                                             <td>
-                                                <form action="{{ route('ingresos.destroy',$ingreso->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('ingresos.show',$ingreso->id) }}"><i class="fa fa-fw fa-eye"></i> Detalle</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('ingresos.edit',$ingreso->id) }}"><i class="fa fa-fw fa-edit"></i> editar</a>
+                                                <form action="{{ route('extras.destroy',$extra->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('extras.show',$extra->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('extras.edit',$extra->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -66,14 +65,12 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                    
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    @endcan
                 </div>
-                {!! $ingresos->links() !!}
+                {!! $extras->links() !!}
             </div>
         </div>
     </div>
